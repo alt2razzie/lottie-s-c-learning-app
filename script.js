@@ -45,10 +45,11 @@ async function fetchLiveLesson(topicName) {
     try {
         // Send the request to your local Node.js server
         const response = await fetch('http://127.0.0.1:3000/api/get-lesson', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ topic: topicName })
-        });
+    method: 'POST',
+    mode: 'cors', // Explicitly tell the browser this is okay
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ topic: topicName })
+});
 
         const data = await response.json();
         
