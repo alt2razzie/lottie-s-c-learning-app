@@ -8,14 +8,18 @@ const categories = [
 ];
 
 const container = document.getElementById('categories-container');
+const homeView = document.getElementById('home-view');
+const lessonView = document.getElementById('lesson-view');
+const lessonContent = document.getElementById('lesson-content');
 
+// 1. Render the cards
+let cardsHTML = "";
 categories.forEach(cat => {
-    // Calculate percentage for the progress bar width
     const percent = cat.total > 0 ? (cat.progress / cat.total) * 100 : 0;
-
-    // Create the HTML string for a single card
-    const cardHTML = `
-        <div class="card">
+    
+    // Notice we added onclick="fetchLiveLesson('${cat.title}')" to the card
+    cardsHTML += `
+        <div class="card" onclick="fetchLiveLesson('${cat.title}')">
             <div class="card-icon" style="background-color: ${cat.color};">${cat.icon}</div>
             <div class="card-content">
                 <div class="card-title">${cat.title}</div>
@@ -28,7 +32,41 @@ categories.forEach(cat => {
             <div class="card-arrow">›</div>
         </div>
     `;
-    
-    // Inject the card into the page
-    container.innerHTML += cardHTML;
 });
+container.innerHTML = cardsHTML;
+
+// 2. The function that talks to your backend!
+async function fetchLiveLesson(topicName) {
+    // Hide the home screen and show the loading screen
+    homeView.style.display = 'none';
+    lessonView.style.display = 'block';
+    lessonContent.innerHTML = `<h3 style="text-align: center; margin-bottom: 1rem;">Asking Gemini about ${topicName}... 🤖</h3><div class="progress-bg"><div class="progress-fill" style="width: 100%; background-color: var(--pastel-sky); animation: pulse 1s infinite;"></div></div>`;
+
+    try {
+        // Send the request to your local Node.js server
+        const response = await fetch('http://localhost:3000/api/get-lesson', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ topic: topicName })
+        });
+
+        const data = await response.json();
+        
+        // Display the AI's response (using pre-wrap so formatting stays intact)
+        if (data.lessonContent) {
+            lessonContent.innerHTML = `<div style="white-space: pre-wrap; line-height: 1.6; font-size: 0.9rem;">${data.lessonContent}</div>`;
+        } else {
+            lessonContent.innerHTML = `<p style="color: var(--pastel-pink);">Error: ${data.error}</p>`;
+        }
+        
+    } catch (error) {
+        console.error("Connection failed:", error);
+        lessonContent.innerHTML = `<p style="color: var(--pastel-pink); text-align: center;">Oops! Could not connect to the Brain. Make sure your server.js is running!</p>`;
+    }
+}
+
+// 3. Back Button functionality
+function goBack() {
+    lessonView.style.display = 'none';
+    homeView.style.display = 'block';
+}
