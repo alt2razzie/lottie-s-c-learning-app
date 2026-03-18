@@ -208,3 +208,22 @@ main { padding: 0 20px 50px 20px; }
 
 /* Code block styling */
 pre { border-radius: 10px; margin: 15px 0; }
+
+.compiler-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.compiler-section h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.compiler-container {
+    overflow: hidden;
+    border-radius: 15px;
+    background: white;
+}
