@@ -44,47 +44,79 @@
     </header>
 
     <main>
-        <h2 class="section-title">📚 C-Programming Roadmap</h2>
+    <h2 class="section-title">📚 C-Programming Roadmap</h2>
 
-        <section class="lesson-stages">
-            <h3 class="stage-header">🐾 Stage 1: The Sandbox</h3>
-            <div class="grid">
-                <div class="card" onclick="fetchLesson('C Hello World')"><div class="card-icon">🐱</div><div class="card-info"><h3>Hello World</h3><p>First Meow</p></div></div>
-                <div class="card" onclick="fetchLesson('C Data Types')"><div class="card-icon">🧶</div><div class="card-info"><h3>Data Types</h3><p>Types of Yarn</p></div></div>
-                <div class="card" onclick="fetchLesson('C Variables')"><div class="card-icon">📦</div><div class="card-info"><h3>Variables</h3><p>Storage Boxes</p></div></div>
-                <div class="card" onclick="fetchLesson('C Basic Math')"><div class="card-icon">➕</div><div class="card-info"><h3>Basic Math</h3><p>Counting Mice</p></div></div>
-            </div>
+    <h3 class="stage-header">🐾 Stage 1: The Sandbox</h3>
+    <div class="grid">
+        <div class="card" onclick="fetchLesson('C Hello World')"><div class="card-icon">🐱</div><div class="card-info"><h3>Hello World</h3><p>First Meow</p></div></div>
+        <div class="card" onclick="fetchLesson('C Data Types')"><div class="card-icon">🧶</div><div class="card-info"><h3>Data Types</h3><p>Types of Yarn</p></div></div>
+        <div class="card" onclick="fetchLesson('C Variables')"><div class="card-icon">📦</div><div class="card-info"><h3>Variables</h3><p>Storage Boxes</p></div></div>
+        <div class="card" onclick="fetchLesson('C Basic Math')"><div class="card-icon">➕</div><div class="card-info"><h3>Basic Math</h3><p>Counting Mice</p></div></div>
+    </div>
 
-            <h3 class="stage-header">🛤️ Stage 2: Decision Alley</h3>
-            <div class="grid">
-                <div class="card" onclick="fetchLesson('C If Else')"><div class="card-icon">🎀</div><div class="card-info"><h3>If/Else</h3><p>Pick a Path</p></div></div>
-                <div class="card" onclick="fetchLesson('C Switch Cases')"><div class="card-icon">🚦</div><div class="card-info"><h3>Switch</h3><p>Multiple Doors</p></div></div>
-                <div class="card" onclick="fetchLesson('C Logical Operators')"><div class="card-icon">🧠</div><div class="card-info"><h3>Logic</h3><p>And/Or/Not</p></div></div>
-                <div class="card" onclick="fetchLesson('C Ternary Operators')"><div class="card-icon">⚖️</div><div class="card-info"><h3>Short Logic</h3><p>Quick Decisions</p></div></div>
-            </div>
+    <h3 class="stage-header">🛤️ Stage 2: Decision Alley</h3>
+    <div class="grid">
+        <div class="card" onclick="fetchLesson('C If Else')"><div class="card-icon">🎀</div><div class="card-info"><h3>If/Else</h3><p>Pick a Path</p></div></div>
+        <div class="card" onclick="fetchLesson('C Switch Cases')"><div class="card-icon">🚦</div><div class="card-info"><h3>Switch</h3><p>Multiple Doors</p></div></div>
+        <div class="card" onclick="fetchLesson('C Logical Operators')"><div class="card-icon">🧠</div><div class="card-info"><h3>Logic</h3><p>And/Or/Not</p></div></div>
+        <div class="card" onclick="fetchLesson('C Ternary Operators')"><div class="card-icon">⚖️</div><div class="card-info"><h3>Short Logic</h3><p>Quick Decisions</p></div></div>
+    </div>
 
-            </section>
+    <h3 class="stage-header">🎡 Stage 3: Loop-the-Loop</h3>
+    <div class="grid">
+        <div class="card" onclick="fetchLesson('C While Loops')"><div class="card-icon">🔄</div><div class="card-info"><h3>While Loops</h3><p>Chasing Tails</p></div></div>
+        <div class="card" onclick="fetchLesson('C For Loops')"><div class="card-icon">🏃</div><div class="card-info"><h3>For Loops</h3><p>Daily Sprints</p></div></div>
+        <div class="card" onclick="fetchLesson('C Do-While Loops')"><div class="card-icon">🔁</div><div class="card-info"><h3>Do-While</h3><p>Repeat Once</p></div></div>
+        <div class="card" onclick="fetchLesson('C Break and Continue')"><div class="card-icon">🛑</div><div class="card-info"><h3>Flow Control</h3><p>Stop & Go</p></div></div>
+    </div>
 
-        <div id="loading" class="loading-container" style="display:none;">
-            <div class="loader-cat">🐱‍💻</div>
-            <p>The Master Cat is thinking...</p>
+    <h3 class="stage-header">📚 Stage 4: The Library</h3>
+    <div class="grid">
+        <div class="card" onclick="fetchLesson('C Functions')"><div class="card-icon">🛠️</div><div class="card-info"><h3>Functions</h3><p>Reusable Tricks</p></div></div>
+        <div class="card" onclick="fetchLesson('C Function Parameters')"><div class="card-icon">📥</div><div class="card-info"><h3>Parameters</h3><p>Giving Input</p></div></div>
+        <div class="card" onclick="fetchLesson('C Return Values')"><div class="card-icon">📤</div><div class="card-info"><h3>Returns</h3><p>Gifting Back</p></div></div>
+        <div class="card" onclick="fetchLesson('C Recursion')"><div class="card-icon">🌀</div><div class="card-info"><h3>Recursion</h3><p>Cat in a Mirror</p></div></div>
+    </div>
+
+    <h3 class="stage-header">🍱 Stage 5: The Toy Box</h3>
+    <div class="grid">
+        <div class="card" onclick="fetchLesson('C 1D Arrays')"><div class="card-icon">🗂️</div><div class="card-info"><h3>Arrays</h3><p>Box Rows</p></div></div>
+        <div class="card" onclick="fetchLesson('C 2D Arrays')"><div class="card-icon">🗺️</div><div class="card-info"><h3>Matrices</h3><p>Grid Maps</p></div></div>
+        <div class="card" onclick="fetchLesson('C Strings')"><div class="card-icon">🧵</div><div class="card-info"><h3>Strings</h3><p>Yarn Text</p></div></div>
+        <div class="card" onclick="fetchLesson('C String Header Functions')"><div class="card-icon">✂️</div><div class="card-info"><h3>String Lib</h3><p>Text Cutting</p></div></div>
+    </div>
+
+    <h3 class="stage-header">🗺️ Stage 6: Treasure Map</h3>
+    <div class="grid">
+        <div class="card" onclick="fetchLesson('C Pointers Basics')"><div class="card-icon">🔦</div><div class="card-info"><h3>Pointers</h3><p>Laser Points</p></div></div>
+        <div class="card" onclick="fetchLesson('C Pointer Arithmetic')"><div class="card-icon">🚶</div><div class="card-info"><h3>Arithmetic</h3><p>Moving Laser</p></div></div>
+        <div class="card" onclick="fetchLesson('C Memory Addresses')"><div class="card-icon">📍</div><div class="card-info"><h3>Addresses</h3><p>Cat GPS</p></div></div>
+        <div class="card" onclick="fetchLesson('C NULL Pointers')"><div class="card-icon">👻</div><div class="card-info"><h3>NULL</h3><p>Ghost Laser</p></div></div>
+    </div>
+
+    <h3 class="stage-header">🏛️ Stage 7: The Architect</h3>
+    <div class="grid">
+        <div class="card" onclick="fetchLesson('C Structs')"><div class="card-icon">🏗️</div><div class="card-info"><h3>Structs</h3><p>Building Cats</p></div></div>
+        <div class="card" onclick="fetchLesson('C Typedef')"><div class="card-icon">🏷️</div><div class="card-info"><h3>Typedef</h3><p>Nicknames</p></div></div>
+        <div class="card" onclick="fetchLesson('C File I/O')"><div class="card-icon">📖</div><div class="card-info"><h3>Files</h3><p>Cat Journals</p></div></div>
+        <div class="card" onclick="fetchLesson('C Malloc and Free')"><div class="card-icon">🧠</div><div class="card-info"><h3>Malloc</h3><p>Memory Space</p></div></div>
+    </div>
+
+    <div id="loading" class="loading-container" style="display:none;">
+        <div class="loader-cat">🐱‍💻</div>
+        <p>The Master Cat is thinking...</p>
+    </div>
+    
+    <div id="lesson-display" class="lesson-content"></div>
+
+    <div class="compiler-section">
+        <h3 class="compiler-title">🐾 Kitten Coding Lab</h3>
+        <p class="compiler-desc">Type your C code below and hit 'Execute'!</p>
+        <div class="compiler-frame-wrapper">
+            <iframe src="https://www.jdoodle.com/c-online-compiler/" width="100%" height="500"></iframe>
         </div>
-        
-        <div id="lesson-display" class="lesson-content">
-            </div>
-
-        <div class="compiler-section">
-            <h3 class="compiler-title">🐾 Kitten Coding Lab</h3>
-            <p class="compiler-desc">Type your C code below and hit 'Execute' to solve the challenge!</p>
-            <div class="compiler-frame-wrapper">
-                <iframe 
-                    src="https://www.jdoodle.com/c-online-compiler/" 
-                    width="100%" 
-                    height="500">
-                </iframe>
-            </div>
-        </div>
-    </main>
+    </div>
+</main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
