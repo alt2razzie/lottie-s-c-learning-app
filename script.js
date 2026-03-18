@@ -20,17 +20,14 @@ async function fetchLesson(topic) {
     const loading = document.getElementById('loading');
     
     // UI Housekeeping: Show loading, hide old lesson
+    display.innerHTML = marked.parse(data.lessonContent);
     loading.style.display = 'block';
     display.style.display = 'none';
-    display.innerHTML = marked.parse(data.lessonContent);
-        display.style.display = 'block';
-        loading.style.display = 'none';
-
-        Prism.highlightAll();
-        updateProgress();
+    Prism.highlightAll();
+    updateProgress();
         
         // Add this line here!
-        makeQuizInteractive();
+     makeQuizInteractive();
     
     // Smooth scroll to the bottom so user sees the loading cat
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
