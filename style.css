@@ -43,7 +43,7 @@ body {
 
 /* 2. The Logo Styling */
 .header-profile-card .logo {
-    width: 150px;           /* Adjust this to make your logo bigger or smaller */
+    width: 280px;           /* Adjust this to make your logo bigger or smaller */
     height: auto;           /* Keeps the logo from looking squished */
     margin-bottom: 15px;    /* Space between logo and text */
     display: block;
