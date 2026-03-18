@@ -77,3 +77,28 @@ function updateProgress() {
     if (totalXpDisplay) totalXpDisplay.innerText = xp;
     if (lessonsDisplay) lessonsDisplay.innerText = lessonsDone;
 }
+// --- Theme Management (Dark/Cute Mode) ---
+function toggleTheme() {
+    // 1. Check if we are currently in light mode
+    const isLight = document.body.classList.contains('light-mode');
+    
+    if (isLight) {
+        // Switch to Dark Mode
+        document.body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+        console.log("🌙 Dark Mode Activated");
+    } else {
+        // Switch to Cute (Light) Mode
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+        console.log("🌸 Cute Mode Activated");
+    }
+}
+
+// 2. Run this IMMEDIATELY when the page loads
+(function loadSavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+    }
+})();
