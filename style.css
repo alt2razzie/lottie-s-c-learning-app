@@ -1,31 +1,30 @@
+/* Default Mode (Dark/Cyber) */
 :root {
-    --bg: #f5f7fb;
-    --card-bg: #ffffff;
-    --text: #2d3436;
-    --primary: #ff7675; /* Soft Coral */
-    --secondary: #fab1a0;
+    --bg: #1a1a2e;
+    --card-bg: #16213e;
+    --text: #e9ecef;
+    --primary: #ff7675; 
+    --secondary: #6c5ce7;
     --accent: #fdcb6e;
-    --progress-bg: #dfe6e9;
+    --progress-bg: #0f3460;
 }
 
-.light-mode {
-    --bg: #ffffff;
-    --card-bg: #f9f9f9;
-    --text: #1a1a1a;
+/* 🌸 Cute Mode (Light Mode) */
+body.light-mode {
+    --bg: #fff5f7;       /* Soft pinkish white */
+    --card-bg: #ffffff;  /* Pure white cards */
+    --text: #4a4a4a;     /* Dark grey text */
+    --primary: #ff8fa3;  /* Bubblegum Pink */
+    --secondary: #ffb6c1;/* Light Pink */
+    --accent: #ffeaa7;   /* Pastel Yellow */
+    --progress-bg: #fce4ec;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* Apply the variables to the body */
 body {
-    font-family: 'Poppins', sans-serif;
     background-color: var(--bg);
     color: var(--text);
-    line-height: 1.6;
-    transition: all 0.3s ease;
+    transition: background 0.4s ease, color 0.4s ease; /* Smooth fade! */
 }
 
 header {
