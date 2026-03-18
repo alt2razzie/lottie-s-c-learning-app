@@ -27,6 +27,50 @@ body {
     transition: background 0.4s ease, color 0.4s ease; /* Smooth fade! */
 }
 
+/* 1. The Container for the Logo and User Info */
+.header-profile-card {
+    display: flex;
+    flex-direction: column; /* Stacks items Top-to-Bottom */
+    align-items: center;    /* Centers items horizontally */
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background: var(--card-bg); /* Uses your theme's card color */
+    border-radius: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* 2. The Logo Styling */
+.header-profile-card .logo {
+    width: 150px;           /* Adjust this to make your logo bigger or smaller */
+    height: auto;           /* Keeps the logo from looking squished */
+    margin-bottom: 15px;    /* Space between logo and text */
+    display: block;
+}
+
+/* 3. The Details (Name & Level) */
+.user-p-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 4. The Theme Toggle (Move it to the top right of the card) */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle:active {
+    transform: scale(0.8);
+}
+
 header {
     background: white;
     padding: 20px;
