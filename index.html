@@ -4,43 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C-Learning Cat Academy 🐈</title>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: white; margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: auto; }
-        h1 { text-align: center; color: #00d2ff; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .card { background: #16213e; padding: 20px; border-radius: 10px; cursor: pointer; text-align: center; transition: 0.3s; border: 1px solid #0f3460; }
-        .card:hover { background: #0f3460; transform: translateY(-5px); border-color: #00d2ff; }
-        #lesson-box { background: #ffffff; color: #333; padding: 30px; border-radius: 15px; min-height: 200px; line-height: 1.6; display: none; }
-        .loading { text-align: center; font-style: italic; color: #00d2ff; display: none; }
-        code { font-family: 'Consolas', monospace; }
+        :root {
+            --bg: #1a1625; --card: #2d2438; --text: #ffffff;
+            --primary: #ff9a9e; --accent: #70a1ff; --secondary: #3b304d;
+        }
+
+        body.light-mode {
+            --bg: #f0f2f5; --card: #ffffff; --text: #2d2438;
+            --secondary: #e4e6eb;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--bg); color: var(--text); 
+            transition: 0.3s; margin: 0; padding: 20px; 
+        }
+
+        .container { max-width: 500px; margin: auto; }
+
+        /* Theme Toggle */
+        .theme-btn {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--primary); border: none; padding: 10px; 
+            border-radius: 50%; cursor: pointer; font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Profile & XP Section */
+        .profile-section { text-align: center; margin-bottom: 25px; }
+        .avatar { width: 80px; margin-bottom: 10px; }
+        .bubble { 
+            background: var(--secondary); padding: 8px 20px; 
+            border-radius: 20px; display: inline-block; font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .xp-container { width: 100%; background: var(--secondary); border-radius: 10px; height: 10px; position: relative; }
+        .xp-fill { 
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4); 
+            height: 100%; width: 35%; border-radius: 10px; transition: 0.5s; 
+        }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .stat-card { 
+            background: var(--card); padding: 15px; border-radius: 15px; 
+            text-align: center; border: 1px solid rgba(255,255,255,0.05); 
+        }
+        .stat-card b { font-size: 18px; color: var(--primary); }
+
+        /* Lesson Categories */
+        .category-title { margin: 25px 0 15px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+        .lesson-card {
+            background: var(--card); padding: 15px; border-radius: 20px;
+            margin-bottom: 12px; display: flex; align-items: center; 
+            justify-content: space-between; cursor: pointer; transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .lesson-card:hover { transform: scale(1.02); background: var(--secondary); }
+        .lesson-info { display: flex; align-items: center; gap: 15px; }
+        .icon-box { 
+            font-size: 24px; background: rgba(255,154,158,0.1); 
+            padding: 10px; border-radius: 15px; 
+        }
+
+        /* AI Content Area */
+        #lesson-display { 
+            background: var(--card); padding: 25px; border-radius: 20px; 
+            margin-top: 20px; display: none; border: 2px solid var(--primary);
+            color: var(--text);
+        }
+        pre { border-radius: 10px; padding: 15px !important; overflow-x: auto; }
+        
+        .loading { text-align: center; display: none; color: var(--primary); font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🐈 C-Learning Academy</h1>
-        <p style="text-align:center">Click a topic to start your paw-some journey!</p>
 
-        <div class="grid">
-            <div class="card" onclick="getLesson('C Basics')">🏁 Basics</div>
-            <div class="card" onclick="getLesson('Variables & Data Types')">📦 Variables</div>
-            <div class="card" onclick="getLesson('If-Else Statements')">⚖️ Logic</div>
-            <div class="card" onclick="getLesson('Loops in C')">🔄 Loops</div>
-            <div class="card" onclick="getLesson('Functions')">🛠️ Functions</div>
-            <div class="card" onclick="getLesson('Pointers')">📍 Pointers</div>
-            <div class="card" onclick="getLesson('Structs')">🏗️ Structs</div>
-            <div class="card" onclick="getLesson('Memory Allocation')">💾 Memory</div>
+    <button class="theme-btn" onclick="toggleTheme()">🌓</button>
+
+    <div class="container">
+        <div class="profile-section">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Felix" class="avatar" alt="Cat Avatar">
+            <br>
+            <div class="bubble">Ready to code, charlotteeee! 🐾</div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                <span>Lv.1 Kitten Coder</span>
+                <span id="xp-text">35/100 XP</span>
+            </div>
+            <div class="xp-container"><div class="xp-fill" id="xp-bar"></div></div>
         </div>
 
-        <div id="loading" class="loading">Cat is typing... 🐾</div>
-        <div id="lesson-box"></div>
+        <div class="stats-grid">
+            <div class="stat-card"><b id="lessons-count">0</b><br><small>Lessons</small></div>
+            <div class="stat-card"><b id="total-xp">35</b><br><small>Total XP</small></div>
+            <div class="stat-card"><b>8</b><br><small>Categories</small></div>
+        </div>
+
+        <div class="category-title">📚 Lesson Categories</div>
+
+        <div id="lesson-list">
+            <div class="lesson-card" onclick="fetchLesson('C Basics')">
+                <div class="lesson-info">
+                    <div class="icon-box">🐱</div>
+                    <div><b>C Basics</b><br><small>Hello World & Variables</small></div>
+                </div>
+                <span>➔</span>
+            </div>
+            <div class="lesson-card" onclick="fetchLesson('Control Flow')">
+                <div class="lesson-info">
+                    <div class="icon-box">🎀</div>
+                    <div><b>Control Flow</b><br><small>If/Else & Switches</small></div>
+                </div>
+                <span>➔</span>
+            </div>
+            <div class="lesson-card" onclick="fetchLesson('Pointers')">
+                <div class="lesson-info">
+                    <div class="icon-box">🍑</div>
+                    <div><b>Pointers</b><br><small>Memory & References</small></div>
+                </div>
+                <span>➔</span>
+            </div>
+            <div class="lesson-card" onclick="fetchLesson('Functions')">
+                <div class="lesson-info">
+                    <div class="icon-box">🌿</div>
+                    <div><b>Functions</b><br><small>Logic & Reusability</small></div>
+                </div>
+                <span>➔</span>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">Cat is thinking... nya~ 🐾</div>
+        <div id="lesson-display"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
-
     <script src="script.js"></script>
 </body>
 </html>
