@@ -1,59 +1,79 @@
+// --- 1. Global State (Gamification) ---
 let xp = 35;
 let lessonsDone = 0;
 
-// 1. Theme Toggle
+// --- 2. Theme Management ---
 function toggleTheme() {
     document.body.classList.toggle('light-mode');
-    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+    const isLight = document.body.classList.contains('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
 }
 
-// Load Theme
-if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
+// Load saved theme on startup
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+}
 
-// 2. Fetch Lesson from Groq Backend
+// --- 3. The "Brain" Connection (AI Fetch) ---
 async function fetchLesson(topic) {
     const display = document.getElementById('lesson-display');
     const loading = document.getElementById('loading');
     
+    // UI Housekeeping: Show loading, hide old lesson
     loading.style.display = 'block';
     display.style.display = 'none';
+    
+    // Smooth scroll to the bottom so user sees the loading cat
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 
     try {
-        const response = await fetch('http://127.0.0.1:3000/api/get-lesson', {
+        // CRITICAL: Notice the "/api/get-lesson" at the end of the URL
+        const response = await fetch('https://c-learning-backend.onrender.com/api/get-lesson', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ topic: topic })
         });
 
+        if (!response.ok) throw new Error("Server is sleeping or busy.");
+
         const data = await response.json();
 
-        // Use Marked to parse AI markdown
+        // Convert AI Markdown to HTML and inject into the page
         display.innerHTML = marked.parse(data.lessonContent);
+        
+        // Show the content and hide loading
         display.style.display = 'block';
         loading.style.display = 'none';
 
-        // Highlight Code
+        // Trigger Prism to color the C code blocks (Blue/Green/Red)
         Prism.highlightAll();
 
-        // Update Gamification
+        // Update the XP bar and stats
         updateProgress();
 
     } catch (error) {
-        loading.innerHTML = "❌ Error connecting to server.";
-        console.error(error);
+        loading.innerHTML = "❌ The cat is taking a long nap. Try again in 30 seconds!";
+        console.error("Fetch Error:", error);
     }
 }
 
-// 3. Update XP and Stats
+// --- 4. Gamification Logic ---
 function updateProgress() {
+    // Increase stats
     xp += 15;
     lessonsDone += 1;
     
-    if (xp > 100) xp = 100; // Cap for Lv 1
+    // Keep XP within 100 for Level 1
+    if (xp > 100) xp = 100; 
 
-    document.getElementById('xp-bar').style.width = xp + '%';
-    document.getElementById('xp-text').innerText = `${xp}/100 XP`;
-    document.getElementById('total-xp').innerText = xp;
-    document.getElementById('lessons-count').innerText = lessonsDone;
+    // Update the UI elements
+    const xpBar = document.getElementById('xp-bar');
+    const xpText = document.getElementById('xp-text');
+    const totalXpDisplay = document.getElementById('total-xp');
+    const lessonsDisplay = document.getElementById('lessons-count');
+
+    if (xpBar) xpBar.style.width = xp + '%';
+    if (xpText) xpText.innerText = `${xp}/100 XP`;
+    if (totalXpDisplay) totalXpDisplay.innerText = xp;
+    if (lessonsDisplay) lessonsDisplay.innerText = lessonsDone;
 }
