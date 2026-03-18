@@ -183,5 +183,28 @@ main { padding: 0 20px 50px 20px; }
     cursor: pointer;
 }
 
+.quiz-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid var(--secondary);
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s;
+}
+
+.quiz-btn:hover {
+    background: var(--bg);
+    transform: translateX(5px);
+}
+
+.quiz-btn:active {
+    transform: scale(0.98);
+}
+
 /* Code block styling */
 pre { border-radius: 10px; margin: 15px 0; }
