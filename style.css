@@ -36,8 +36,8 @@ body {
     text-align: center;
     padding: 20px;
     background: var(--card-bg); /* Uses your theme's card color */
-    border-radius: 30px;
-    margin-bottom: 25px;
+    border-radius: 5px;
+    margin-bottom: 0px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
@@ -45,7 +45,7 @@ body {
 .header-profile-card .logo {
     width: 280px;           /* Adjust this to make your logo bigger or smaller */
     height: auto;           /* Keeps the logo from looking squished */
-    margin-bottom: 15px;    /* Space between logo and text */
+    margin-bottom: 0px;    /* Space between logo and text */
     display: block;
 }
 
