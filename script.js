@@ -102,3 +102,28 @@ function toggleTheme() {
         document.body.classList.add('light-mode');
     }
 })();
+
+// Function to make the Quiz clickable
+function makeQuizInteractive() {
+    const display = document.getElementById('lesson-display');
+    const text = display.innerHTML;
+
+    // This looks for "A) ... B) ... C) ... D) ..."
+    const quizRegex = /([A-D])\)\s*([^<]+)/g;
+    
+    display.innerHTML = text.replace(quizRegex, (match, letter, answer) => {
+        return `<button class="quiz-btn" onclick="checkAnswer('${letter}')">${letter}) ${answer}</button>`;
+    });
+}
+
+// Function to check if you got it right!
+function checkAnswer(selected) {
+    // Most AI quizzes have 'C' as the common answer for #include, 
+    // but for now, let's just make it show a result:
+    if (selected === 'C') {
+        alert("🎉 Purr-fect! You got it right! +5 Bonus XP");
+        // You can add logic here to increase XP further
+    } else {
+        alert("😿 Not quite! Try reading the cat metaphor again.");
+    }
+}
